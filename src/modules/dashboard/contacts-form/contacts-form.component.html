@@ -1,0 +1,88 @@
+<mat-card class="container">
+  <form [formGroup]="contactsForm">
+    <div class="form-element">
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input
+          required
+          [formControl]="abstractControlToFormControl(nameFormControl)"
+          placeholder="Name"
+          type="text"
+          matInput
+        />
+        <mat-error
+          *ngIf="
+            nameFormControl.errors?.required &&
+            (nameFormControl.touched || nameFormControl.dirty)
+          "
+          >Name is required</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          required
+          [formControl]="abstractControlToFormControl(emailFormControl)"
+          placeholder="asd@asd.com"
+          type="text"
+        />
+        <mat-error
+          *ngIf="
+            emailFormControl.errors?.pattern &&
+            (emailFormControl.touched || emailFormControl.dirty)
+          "
+          >Please provide a valid email address</mat-error
+        >
+        <mat-error
+          *ngIf="
+            emailFormControl.errors?.required &&
+            (emailFormControl.touched || emailFormControl.dirty)
+          "
+          >Email address is required</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Phone number</mat-label>
+        <input
+          matInput
+          required
+          [formControl]="abstractControlToFormControl(phoneFormControl)"
+          placeholder="123"
+          type="text"
+        />
+        <mat-error
+          *ngIf="
+            phoneFormControl.errors?.pattern &&
+            (phoneFormControl.touched || phoneFormControl.dirty)
+          "
+          >Phone is invalid</mat-error
+        >
+        <mat-error
+          *ngIf="
+            phoneFormControl.errors?.required &&
+            (phoneFormControl.touched || phoneFormControl.dirty)
+          "
+          >Phone is required</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div class="example-button-row">
+      <app-generic-button
+        *ngIf="!this.data"
+        (click)="addContact()"
+        [disabled]="contactsForm.status === 'INVALID'"
+        text="Add contact!"
+      >
+      </app-generic-button>
+      <app-generic-button
+        *ngIf="this.data"
+        text="Update contact!"
+        (click)="updateContact()"
+        [disabled]="contactsForm.status === 'INVALID'"
+      >
+      </app-generic-button>
+    </div>
+  </form>
+</mat-card>
