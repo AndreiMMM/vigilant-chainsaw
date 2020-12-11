@@ -1,5 +1,5 @@
-export interface ContactsInterface {
-  position: number;
+export interface ContactInterface {
+  id: number;
   name: string;
   email: string;
   favorite: boolean;

@@ -1,0 +1,35 @@
+<form [formGroup]="formGroup">
+  <mat-form-field>
+    <mat-label>Username: </mat-label>
+    <input
+      [formControl]="abstractControlToFormControl(userNameFormControl)"
+      matInput
+      placeholder="zzzz"
+    />
+    <mat-error
+      *ngIf="
+        userNameFormControl.hasError('required') &&
+        (userNameFormControl.dirty || userNameFormControl.touched)
+      "
+    >
+      Username is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Password: </mat-label>
+    <input
+      [formControl]="abstractControlToFormControl(passwordFormControl)"
+      matInput
+      placeholder="zzzz"
+    />
+    <mat-error
+      *ngIf="
+        passwordFormControl.hasError('required') &&
+        (passwordFormControl.dirty || passwordFormControl.touched)
+      "
+    >
+      Password is required
+    </mat-error>
+  </mat-form-field>
+</form>

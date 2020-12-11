@@ -1,0 +1,9 @@
+.container {
+  padding: 4em;
+}
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
