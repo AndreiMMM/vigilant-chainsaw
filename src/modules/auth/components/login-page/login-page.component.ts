@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {AuthApiService} from '../../services/auth-api.service';
-import {UserInterface} from '../../models/user.interface';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthApiService } from '../../services/auth-api.service';
+import { UserInterface } from '../../models/user.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',

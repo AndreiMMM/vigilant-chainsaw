@@ -1,8 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Store} from '@ngrx/store';
-import {DashboardStateInterface} from '../../models/contacts.adapter.interface';
-import {takeUntil} from 'rxjs/operators';
-import {ContactsCrudMethodsClass} from '../../models/contacts-crud-methods.class';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { DashboardStateInterface } from '../../models/contacts.adapter.interface';
+import { takeUntil } from 'rxjs/operators';
+import { ContactsCrudMethodsClass } from '../../models/contacts-crud-methods.class';
 
 @Component({
   selector: 'app-contacts',

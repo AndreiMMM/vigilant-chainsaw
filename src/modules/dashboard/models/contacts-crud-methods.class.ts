@@ -1,10 +1,10 @@
-import {ContactInterface} from './contactInterface';
+import { ContactInterface } from './contactInterface';
 import * as DashboardActions from '../store/dashboard.actions';
-import {DashboardStateInterface} from './contacts.adapter.interface';
-import {Store} from '@ngrx/store';
-import {Observable, Subject} from 'rxjs';
+import { DashboardStateInterface } from './contacts.adapter.interface';
+import { Store } from '@ngrx/store';
+import { Observable, Subject } from 'rxjs';
 import * as DashboardSelectors from '../store/dashboard.selectors';
-import {selectDashboardLoading} from '../store/dashboard.selectors';
+import { selectDashboardLoading } from '../store/dashboard.selectors';
 
 export class ContactsCrudMethodsClass {
   public loading = true;

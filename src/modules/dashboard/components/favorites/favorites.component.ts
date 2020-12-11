@@ -1,10 +1,10 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {takeUntil} from 'rxjs/operators';
-import {selectFavoritedContacts} from '../../store/dashboard.selectors';
-import {DashboardStateInterface} from '../../models/contacts.adapter.interface';
-import {Store} from '@ngrx/store';
-import {ContactInterface} from '../../models/contactInterface';
-import {ContactsCrudMethodsClass} from '../../models/contacts-crud-methods.class';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { takeUntil } from 'rxjs/operators';
+import { selectFavoritedContacts } from '../../store/dashboard.selectors';
+import { DashboardStateInterface } from '../../models/contacts.adapter.interface';
+import { Store } from '@ngrx/store';
+import { ContactInterface } from '../../models/contactInterface';
+import { ContactsCrudMethodsClass } from '../../models/contacts-crud-methods.class';
 
 @Component({
   selector: 'app-favorites',
