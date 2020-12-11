@@ -1,0 +1,83 @@
+<div class="filter-container">
+  <app-generic-button
+    (click)="openAddPopUp()"
+    text="Add contact"
+  ></app-generic-button>
+  <mat-form-field>
+    <input
+      matInput
+      type="text"
+      (keyup)="doFilter($event.target.value)"
+      placeholder="Filter"
+    />
+  </mat-form-field>
+  <app-generic-button
+    text="Add to favorite"
+    (click)="openAddToFavoritePopUp()"
+  ></app-generic-button>
+</div>
+
+<table mat-table [dataSource]="getDataSource">
+  <!-- Position Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>No.</th>
+    <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+  </ng-container>
+
+  <!-- Email Column -->
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef>Email</th>
+    <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+  </ng-container>
+
+  <!-- Phone Column -->
+  <ng-container matColumnDef="phone">
+    <th mat-header-cell *matHeaderCellDef>Phone</th>
+    <td mat-cell *matCellDef="let element">
+      {{ formatPipe.transform(element.phone) }}
+    </td>
+  </ng-container>
+
+  <!-- Favorite Column -->
+  <ng-container matColumnDef="favorite">
+    <th mat-header-cell *matHeaderCellDef>Favorite</th>
+    <td
+      (click)="favoriteToggle(element, true)"
+      mat-cell
+      *matCellDef="let element"
+    >
+      click me ->
+      <mat-icon
+        class="fav-icon"
+        [ngClass]="{ selected: element.favorite }"
+        aria-label="Favorite"
+        >favorite</mat-icon
+      >
+    </td>
+  </ng-container>
+
+  <!-- Menu Column -->
+  <ng-container matColumnDef="menu">
+    <th mat-header-cell *matHeaderCellDef>Menu</th>
+    <td mat-cell *matCellDef="let element">
+      <app-generic-button
+        (click)="openUpdatePopUp(element)"
+        text="Update contact"
+      >
+      </app-generic-button>
+      <app-generic-button
+        (click)="onDelete(element)"
+        text="Delete Contact"
+      ></app-generic-button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
