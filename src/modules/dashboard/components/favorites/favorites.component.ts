@@ -1,34 +1,25 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { takeUntil } from 'rxjs/operators';
-import { Observable, Subject } from 'rxjs';
-import {
-  selectDashboardLoading,
-  selectFavoritedContacts,
-} from '../../store/dashboard.selectors';
-import { DashboardStateInterface } from '../../models/contacts.adapter.interface';
-import { Store } from '@ngrx/store';
-import * as DashboardActions from '../../store/dashboard.actions';
-import { ContactInterface } from '../../models/contactInterface';
-import * as DashboardSelectors from '../../store/dashboard.selectors';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {takeUntil} from 'rxjs/operators';
+import {selectFavoritedContacts,} from '../../store/dashboard.selectors';
+import {DashboardStateInterface} from '../../models/contacts.adapter.interface';
+import {Store} from '@ngrx/store';
+import {ContactInterface} from '../../models/contactInterface';
+import {ContactsCrudMethodsClass} from '../../models/contacts-crud-methods.class';
 
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.css'],
 })
-export class FavoritesComponent implements OnInit, OnDestroy {
-  public loading = true;
-  public dataSource: ContactInterface[];
+export class FavoritesComponent
+  extends ContactsCrudMethodsClass
+  implements OnInit, OnDestroy {
   public allDataSource: ContactInterface[];
 
-  private unsubscriber$: Subject<void> = new Subject<void>();
-  private loading$ = this.store$.select(selectDashboardLoading);
   private favoritedContacts$ = this.store$.select(selectFavoritedContacts);
-  private contacts$: Observable<any> = this.store$.select(
-    DashboardSelectors.selectAll
-  );
-  constructor(private readonly store$: Store<DashboardStateInterface>) {
-    this.store$.dispatch(new DashboardActions.LoadContacts());
+
+  constructor(protected readonly store$: Store<DashboardStateInterface>) {
+    super(store$);
   }
 
   public ngOnInit(): void {
@@ -38,18 +29,6 @@ export class FavoritesComponent implements OnInit, OnDestroy {
   public ngOnDestroy(): void {
     this.unsubscriber$.next();
     this.unsubscriber$.complete();
-  }
-
-  public onDelete(contact: ContactInterface): void {
-    this.store$.dispatch(new DashboardActions.Delete(contact.id));
-  }
-
-  public onUpdate(contact: ContactInterface): void {
-    this.store$.dispatch(new DashboardActions.Update(contact));
-  }
-
-  public onAdd(contact: ContactInterface): void {
-    this.store$.dispatch(new DashboardActions.Add(contact));
   }
 
   private fetchStore(): void {
